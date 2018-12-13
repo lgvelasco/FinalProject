@@ -1,5 +1,6 @@
 from tkinter import *
 from PIL import ImageTk, Image
+import TextEntry
 
 
 class GUI(object):
@@ -20,29 +21,54 @@ class GUI(object):
         self.poster = Frame(master=self.frame)
         self.canvas = []
         for i in range(5):
-            # set the background to green to simulate a table and set the border thickness to 0
             self.canvas.append(Canvas(master=self.poster, width=250, height=400, bg="#A2D9CE", highlightthickness=0))
             self.canvas[i].grid(row=0, column=i)
 
-        self.poster.grid(row=1, padx=75)
+        self.poster.grid(row=1, padx=75, columnspan=5)
 
         # Adding posters to canvas
         size = 200, 500
         im = Image.open('Annie_Hall.jpg')
         im.thumbnail(size)
-        self.canvas[0].image = self.canvas[0].image = ImageTk.PhotoImage(im)
+        self.canvas[0].image = ImageTk.PhotoImage(im)
         self.canvas[0].create_image(20, 60, image=self.canvas[0].image, anchor='nw')
 
         im = Image.open('Pulp_Fiction.jpg')
         im.thumbnail(size)
-        self.canvas[1].image = self.canvas[1].image = ImageTk.PhotoImage(im)
+        self.canvas[1].image = ImageTk.PhotoImage(im)
         self.canvas[1].create_image(20, 60, image=self.canvas[1].image, anchor='nw')
 
+        # Buttons
+        self.bt1 = Button(self.frame, text='"Annie Hall"')
+        self.bt1.config(font=("Courier", 30))
+        self.bt1.grid(row=2, column=0)
+
+        self.bt2 = Button(self.frame, text='"Pulp Fiction"')
+        self.bt2.config(font=("Courier", 30))
+        self.bt2.grid(row=2, column=1)
+
+        self.bt3 = Button(self.frame, text='test')
+        self.bt3.config(font=("Courier", 30))
+        self.bt3.grid(row=2, column=2)
+
+        self.bt4 = Button(self.frame, text='tes')
+        self.bt4.config(font=("Courier", 30))
+        self.bt4.grid(row=2, column=3)
+
+        self.bt5 = Button(self.frame, text='sdfasf')
+        self.bt5.config(font=("Courier", 30))
+        self.bt5.grid(row=2, column=4)
+
+        self.analyze_bt = Button(self.frame, text="Analyze your own Screenplay", command=self.anlyzer_opener())
+        self.analyze_bt.config(font=("Courier", 30))
+        self.analyze_bt.grid(row=3, columnspan=5, pady=100)
+
+    def anlyzer_opener(self):
+        window = Tk(screenName="Screenplay Analyzer")
+        textentry = TextEntry(window)
+        window.mainloop()
 
 
-
-
-
-window = Tk(screenName="Poker")
+window = Tk(screenName="Screenplay Analyzer")
 poker_game = GUI(window)
 window.mainloop()
