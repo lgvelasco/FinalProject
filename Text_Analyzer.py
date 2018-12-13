@@ -1,8 +1,11 @@
 import re
 from textblob import TextBlob
 
+# Had to create another Screenplay class, as the original requires the text to be in a file and open it
+# A flaw at the early stage of the design
 
-class Screenplay(object):
+
+class TextAnalyzer(object):
     def __init__(self, screenplay):
         self.file = open(screenplay)
         self.text = self.file.read()
