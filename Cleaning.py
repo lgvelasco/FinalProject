@@ -1,3 +1,6 @@
+
+# Remove indentations from screenplays
+
 # pulp_fiction = 'Pulp_Fiction.txt'
 # test = 'Pulp_Fiction_Clean.txt'
 #
@@ -11,10 +14,23 @@
 # ft.close()
 
 
-get_out = 'Get_Out.txt'
-test = 'Get_Out_Clean.txt'
+# get_out = 'Get_Out.txt'
+# test = 'Get_Out_Clean.txt'
+#
+# fp = open(get_out, 'r')
+# ft = open(test, 'w')
+#
+# for line in fp:
+#     ft.write(line.lstrip())
+#
+# fp.close()
+# ft.close()
 
-fp = open(get_out, 'r')
+
+lala = 'La_La_Land.txt'
+test = 'La_La_Land_Clean.txt'
+
+fp = open(lala, 'r')
 ft = open(test, 'w')
 
 for line in fp:
@@ -22,3 +38,4 @@ for line in fp:
 
 fp.close()
 ft.close()
+

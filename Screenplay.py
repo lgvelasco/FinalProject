@@ -68,7 +68,7 @@ class Screenplay(object):
         plt.title(self.get_title(), fontsize=32)
         plt.ylim((-0.75, 0.75))
         plt.ylabel("Sentiment Polarity")
-        plt.xlabel("Running Time")
+        plt.xlabel("Scenes")
         # plt.text(.5, 1.03, "Average Sentiment - " + str(round(average(y), 4)), color="green")
         ttl = ax.title
         ttl.set_position([.5, 1.05])
@@ -92,9 +92,10 @@ if __name__ == "__main__":
     print(annie_hall.get_title())
     print(annie_hall.get_characters())
 
-    annie_hall.plot_sentiment()
-
     pulp_fiction = Screenplay("Pulp_Fiction_Clean.txt")
     print(pulp_fiction.get_title())
     print(pulp_fiction.get_characters())
 
+    get_out = Screenplay('Get_Out_Clean.txt')
+    print(get_out.get_title())
+    print(get_out.get_characters())
