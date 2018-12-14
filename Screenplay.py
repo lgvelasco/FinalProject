@@ -99,3 +99,13 @@ if __name__ == "__main__":
     get_out = Screenplay('Get_Out_Clean.txt')
     print(get_out.get_title())
     print(get_out.get_characters())
+
+    la_la = Screenplay('La_La_Land_Clean.txt')
+    print(la_la.get_title())
+    print(la_la.get_characters())
+    la_la.plot_sentiment()
+
+    req = Screenplay("Requiem_For_A_Dream.txt")
+    print(req.get_title())
+    print(req.get_characters())
+    req.plot_sentiment()

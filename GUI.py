@@ -38,15 +38,15 @@ class GUI(object):
         self.canvas[1].image = ImageTk.PhotoImage(im)
         self.canvas[1].create_image(20, 60, image=self.canvas[1].image, anchor='nw')
 
-        im = Image.open('Get_Out.jpg')
+        im = Image.open('La_La_Land.jpg')
         im.thumbnail(size)
         self.canvas[2].image = ImageTk.PhotoImage(im)
         self.canvas[2].create_image(20, 60, image=self.canvas[2].image, anchor='nw')
 
-        im = Image.open('Get_Out.jpg')
+        im = Image.open('Requiem_For_A_Dream.jpg')
         im.thumbnail(size)
-        self.canvas[2].image = ImageTk.PhotoImage(im)
-        self.canvas[2].create_image(20, 60, image=self.canvas[2].image, anchor='nw')
+        self.canvas[3].image = ImageTk.PhotoImage(im)
+        self.canvas[3].create_image(20, 60, image=self.canvas[3].image, anchor='nw')
 
         # Buttons
         self.bt1 = Button(self.frame, text='"Annie Hall"')
@@ -57,7 +57,7 @@ class GUI(object):
         self.bt2.config(font=("Courier", 30))
         self.bt2.grid(row=2, column=1)
 
-        self.bt3 = Button(self.frame, text='Get Out')
+        self.bt3 = Button(self.frame, text='La La Land')
         self.bt3.config(font=("Courier", 30))
         self.bt3.grid(row=2, column=2)
 
