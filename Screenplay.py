@@ -45,8 +45,6 @@ class Screenplay(object):
         scenes = self.text.split('INT' or 'EXT')
         return scenes
 
-    # def clean_name(self):
-
     def get_sentiment(self):
         sentiments = []
         scenes = self.divide_by_scenes()

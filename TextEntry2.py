@@ -1,4 +1,6 @@
 from tkinter import *
+import Screenplay as sp
+
 
 class TextEntry(object):
     def __init__(self, window):

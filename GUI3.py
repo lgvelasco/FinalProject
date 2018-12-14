@@ -1,7 +1,7 @@
 from tkinter import *
 from PIL import ImageTk, Image
 import TextEntry as te
-
+import Screenplay as sp
 
 class GUI(object):
     def __init__(self, window):
@@ -49,7 +49,7 @@ class GUI(object):
         self.canvas[3].create_image(20, 60, image=self.canvas[3].image, anchor='nw')
 
         # Buttons
-        self.bt1 = Button(self.frame, text='"Annie Hall"')
+        self.bt1 = Button(self.frame, text='"Annie Hall"', command=self.anniehallanalysis)
         self.bt1.config(font=("Courier", 30))
         self.bt1.grid(row=2, column=0)
 
@@ -70,11 +70,12 @@ class GUI(object):
         self.analyze_bt.grid(row=3, columnspan=4, pady=100)
 
     def analyzer_opener(self):
-        # window = Tk(screenName="Screenplay Analyzer")
-        # poker_game = TextEntry(window)
-        # window.mainloop()
         root2 = Toplevel(self.window)
         analyzer = te.TextEntry(root2)
+
+    def anniehallanalysis(self):
+        annie = sp.Screenplay('Annie_Hall.txt')
+        annie.plot_sentiment()
 
 
 window = Tk(screenName="Screenplay Analyzer")
