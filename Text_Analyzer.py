@@ -53,8 +53,6 @@ class TextAnalyzer(object):
         sentiments = []
         scenes = self.divide_by_scenes()
 
-
-
         for i in range(len(scenes)):
             blob = TextBlob(scenes[i])
             emotion = blob.sentiment.polarity
@@ -73,9 +71,4 @@ def remove_parenthesis(string):
     return string
 
 
-if __name__ == "__main__":
-    annie_hall = Screenplay("Annie_Hall.txt")
-    print(annie_hall.get_title())
-
-    pulp_fiction = Screenplay("Pulp_Fiction_Clean.txt")
-    print(pulp_fiction.get_title())
+# if __name__ == "__main__":

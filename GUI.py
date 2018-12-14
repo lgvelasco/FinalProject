@@ -38,16 +38,26 @@ class GUI(object):
         self.canvas[1].image = ImageTk.PhotoImage(im)
         self.canvas[1].create_image(20, 60, image=self.canvas[1].image, anchor='nw')
 
+        im = Image.open('Get_Out.jpg')
+        im.thumbnail(size)
+        self.canvas[2].image = ImageTk.PhotoImage(im)
+        self.canvas[2].create_image(20, 60, image=self.canvas[2].image, anchor='nw')
+
+        im = Image.open('Get_Out.jpg')
+        im.thumbnail(size)
+        self.canvas[2].image = ImageTk.PhotoImage(im)
+        self.canvas[2].create_image(20, 60, image=self.canvas[2].image, anchor='nw')
+
         # Buttons
         self.bt1 = Button(self.frame, text='"Annie Hall"')
         self.bt1.config(font=("Courier", 30))
         self.bt1.grid(row=2, column=0)
 
-        self.bt2 = Button(self.frame, text='"Pulp Fiction"')
+        self.bt2 = Button(self.frame, text='Pulp Fiction')
         self.bt2.config(font=("Courier", 30))
         self.bt2.grid(row=2, column=1)
 
-        self.bt3 = Button(self.frame, text='test')
+        self.bt3 = Button(self.frame, text='Get Out')
         self.bt3.config(font=("Courier", 30))
         self.bt3.grid(row=2, column=2)
 
@@ -59,14 +69,14 @@ class GUI(object):
         self.bt5.config(font=("Courier", 30))
         self.bt5.grid(row=2, column=4)
 
-        self.analyze_bt = Button(self.frame, text="Analyze your own Screenplay", command=self.anlyzer_opener())
+        self.analyze_bt = Button(self.frame, text="Analyze your own Screenplay")
         self.analyze_bt.config(font=("Courier", 30))
         self.analyze_bt.grid(row=3, columnspan=5, pady=100)
 
-    def anlyzer_opener(self):
-        window = Tk(screenName="Screenplay Analyzer")
-        textentry = TextEntry(window)
-        window.mainloop()
+    # def anlyzer_opener(self):
+    #     window = Tk(screenName="Screenplay Analyzer")
+    #     textentry = TextEntry(window)
+    #     window.mainloop()
 
 
 window = Tk(screenName="Screenplay Analyzer")

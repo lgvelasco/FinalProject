@@ -17,3 +17,4 @@ for i in range(len(scenes)):
     emotion = blob.sentiment.polarity
     sentinments.append(emotion)
 print(sentinments)
+
