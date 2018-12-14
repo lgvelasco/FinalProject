@@ -1,5 +1,6 @@
 import re
 from textblob import TextBlob
+import matplotlib.pyplot as plt
 
 
 class Screenplay(object):
@@ -56,6 +57,24 @@ class Screenplay(object):
             sentiments.append(emotion)
         return sentiments
 
+    def plot_sentiment(self):
+        x = []
+        for i in range(len(self.divide_by_scenes())):
+            x.append(i + 1)
+
+        y = self.get_sentiment()
+        fig, ax = plt.subplots()
+        plt.plot(x, y)
+        plt.title(self.get_title(), fontsize=32)
+        plt.ylim((-0.75, 0.75))
+        plt.ylabel("Sentiment Polarity")
+        plt.xlabel("Running Time")
+        # plt.text(.5, 1.03, "Average Sentiment - " + str(round(average(y), 4)), color="green")
+        ttl = ax.title
+        ttl.set_position([.5, 1.05])
+
+        plt.show()
+
     def print(self):
         print(self.text)
 
@@ -72,6 +91,8 @@ if __name__ == "__main__":
     annie_hall = Screenplay("Annie_Hall.txt")
     print(annie_hall.get_title())
     print(annie_hall.get_characters())
+
+    annie_hall.plot_sentiment()
 
     pulp_fiction = Screenplay("Pulp_Fiction_Clean.txt")
     print(pulp_fiction.get_title())

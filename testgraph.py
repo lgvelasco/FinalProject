@@ -4,8 +4,6 @@ import matplotlib
 from matplotlib import style
 import matplotlib.pyplot as plt
 
-
-
 annie_hall = sp.Screenplay('Annie_Hall.txt')
 annie_hall.print()
 print(annie_hall.get_characters())
