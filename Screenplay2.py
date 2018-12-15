@@ -3,8 +3,7 @@ from textblob import TextBlob
 import matplotlib
 matplotlib.use('TkAgg')
 from matplotlib.figure import Figure
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-
+import operator
 
 class Screenplay(object):
     def __init__(self, screenplay):
@@ -100,6 +99,48 @@ class Screenplay(object):
             x.append(i + 1)
         return x
 
+    # Sort characters by key
+    def sort_characters(self):
+        d = self.get_characters()
+        sorted_d = sorted(d.items(), key=operator.itemgetter(1), reverse=True)
+        return sorted_d
+
+    def top_5_characters(self):
+        a = self.get_characters()
+        b = sorted(a, key=a.get, reverse=True)
+        b = b[:5]
+        return b
+
+    def top_5_characters_values(self):
+        characters = self.get_characters()
+        fives = self.top_5_characters()
+        b = []
+        for character in fives:
+            a = characters.get(character)
+            b.append(a)
+        return b
+
+    # Characters bar graph
+    def plot_characters(self):
+        x = self.top_5_characters()
+        y = self.top_5_characters_values()
+
+        fig = Figure()
+        a = fig.add_subplot(111)
+        a.bar(x, y)
+
+        a.set_title(self.get_title(), fontsize=32)
+        a.set_ylabel("Appearances", fontsize=16)
+        a.set_xlabel("Characters", fontsize=16)
+
+        # ax = plt.subplot(111)
+        # ax.bar(x, y, width=0.5, color='b', align='center')
+        # ax.bar(x, z, width=0.5, color='g', align='center')
+        # ax.bar(x, k, width=0.5, color='r', align='center')
+        # ax.xaxis_date()
+
+        return fig
+
     def print(self):
         print(self.text)
 
@@ -116,19 +157,6 @@ if __name__ == "__main__":
     annie_hall = Screenplay("Annie_Hall.txt")
     print(annie_hall.get_title())
     print(annie_hall.get_characters())
-
-    pulp_fiction = Screenplay("Pulp_Fiction_Clean.txt")
-    print(pulp_fiction.get_title())
-    print(pulp_fiction.get_characters())
-
-    get_out = Screenplay('Get_Out_Clean.txt')
-    print(get_out.get_title())
-    print(get_out.get_characters())
-
-    la_la = Screenplay('La_La_Land_Clean.txt')
-    print(la_la.get_title())
-    print(la_la.get_characters())
-
-    req = Screenplay("Requiem_For_A_Dream.txt")
-    print(req.get_title())
-    print(req.get_characters())
+    print(annie_hall.sort_characters())
+    print(annie_hall.top_5_characters())
+    print(annie_hall.top_5_characters_values())

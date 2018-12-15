@@ -1,5 +1,4 @@
 from tkinter import *
-import Text_Analyzer as ta
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import Screenplay2 as sp
 
@@ -55,9 +54,18 @@ class TextEntry(object):
         self.canvas.get_tk_widget().pack()
         self.canvas.draw()
 
+    def show_bar_graph(self, title):
+        annieh = sp.Screenplay(title)
+        self.fig = annieh.plot_characters()
+        root3 = Toplevel(self.window)
+        self.canvas = FigureCanvasTkAgg(self.fig, master=root3)
+        self.canvas.get_tk_widget().pack()
+        self.canvas.draw()
+
     def show_everything(self):
         self.write_to_textanalyzer()
         self.show_sentiment_graph('TextAnalyzer.txt')
+        self.show_bar_graph('TextAnalyzer.txt')
 
 def run_textentry():
     window = Tk(screenName="Screenplay Analyzer")

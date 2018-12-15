@@ -85,17 +85,31 @@ class GUI(object):
         self.canvas.get_tk_widget().pack()
         self.canvas.draw()
 
+    # Show characters bar graph
+    def show_bar_graph(self, title):
+        annieh = sp.Screenplay(title)
+        self.fig = annieh.plot_characters()
+        root3 = Toplevel(self.window)
+        self.canvas = FigureCanvasTkAgg(self.fig, master=root3)
+        self.canvas.get_tk_widget().pack()
+        self.canvas.draw()
+
+    # Show sentiment and bar graph
     def annieh(self):
         self.show_sentiment_graph('Annie_Hall.txt')
+        self.show_bar_graph('Annie_Hall.txt')
 
     def pulp(self):
         self.show_sentiment_graph('Pulp_Fiction_Clean.txt')
+        self.show_bar_graph('Pulp_Fiction_Clean.txt')
 
     def lala(self):
         self.show_sentiment_graph('La_La_Land_Clean.txt')
+        self.show_bar_graph('La_La_Land_Clean.txt')
 
     def requiem(self):
         self.show_sentiment_graph("Requiem_For_A_Dream.txt")
+        self.show_bar_graph("Requiem_For_A_Dream.txt")
 
 
 window = Tk(screenName="Screenplay Analyzer")
