@@ -1,6 +1,9 @@
 import re
 from textblob import TextBlob
-import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use('TkAgg')
+from matplotlib.figure import Figure
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 
 class Screenplay(object):
@@ -55,23 +58,43 @@ class Screenplay(object):
             sentiments.append(emotion)
         return sentiments
 
+    # def plot_sentiment(self):
+    #     x = []
+    #     for i in range(len(self.divide_by_scenes())):
+    #         x.append(i + 1)
+    #
+    #     y = self.get_sentiment()
+    #     fig, ax = plt.subplots()
+    #     plt.plot(x, y)
+    #     plt.title(self.get_title(), fontsize=32)
+    #     plt.ylim((-0.75, 0.75))
+    #     plt.ylabel("Sentiment Polarity")
+    #     plt.xlabel("Scenes")
+    #     # plt.text(.5, 1.03, "Average Sentiment - " + str(round(average(y), 4)), color="green")
+    #     ttl = ax.title
+    #     ttl.set_position([.5, 1.05])
+    #
+    #     plt.show()
+
     def plot_sentiment(self):
+        x = self.get_x_sentiment()
+        y = self.get_sentiment()
+
+        fig = Figure()
+        a = fig.add_subplot(111)
+        a.plot(x, y)
+
+        a.set_title(self.get_title(), fontsize=32)
+        a.set_ylabel("Sentiment Polarity", fontsize=16)
+        a.set_xlabel("Scenes", fontsize=16)
+
+        return fig
+
+    def get_x_sentiment(self):
         x = []
         for i in range(len(self.divide_by_scenes())):
             x.append(i + 1)
-
-        y = self.get_sentiment()
-        fig, ax = plt.subplots()
-        plt.plot(x, y)
-        plt.title(self.get_title(), fontsize=32)
-        plt.ylim((-0.75, 0.75))
-        plt.ylabel("Sentiment Polarity")
-        plt.xlabel("Scenes")
-        # plt.text(.5, 1.03, "Average Sentiment - " + str(round(average(y), 4)), color="green")
-        ttl = ax.title
-        ttl.set_position([.5, 1.05])
-
-        plt.show()
+        return x
 
     def print(self):
         print(self.text)
@@ -105,4 +128,3 @@ if __name__ == "__main__":
     req = Screenplay("Requiem_For_A_Dream.txt")
     print(req.get_title())
     print(req.get_characters())
-    req.plot_sentiment()
