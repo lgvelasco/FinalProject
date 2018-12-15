@@ -1,4 +1,8 @@
 from tkinter import *
+import Text_Analyzer as ta
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+import Screenplay2 as sp
+
 
 class TextEntry(object):
     def __init__(self, window):
@@ -25,7 +29,7 @@ class TextEntry(object):
         self.txt['yscrollcommand'] = scrollb.set
 
         # Buttons
-        self.analyze_bt = Button(self.frame, text='Analyze')
+        self.analyze_bt = Button(self.frame, text='Analyze', command=self.show_everything)
         self.analyze_bt.config(font=("Courier", 30))
         self.analyze_bt.grid(row=1, column=3, padx=250)
 
@@ -36,6 +40,24 @@ class TextEntry(object):
     def close(self):
         exit(0)
 
+    # Reads the text box and adds it to new file, to be able to work with Screenplay2 class
+    def write_to_textanalyzer(self):
+        text_ta = open('TextAnalyzer.txt', 'w')
+        text = self.txt.get("1.0", 'end-1c')
+        text_ta.write(text)
+        text_ta.close()
+
+    def show_sentiment_graph(self, title):
+        annieh = sp.Screenplay(title)
+        self.fig = annieh.plot_sentiment()
+        root3 = Toplevel(self.window)
+        self.canvas = FigureCanvasTkAgg(self.fig, master=root3)
+        self.canvas.get_tk_widget().pack()
+        self.canvas.draw()
+
+    def show_everything(self):
+        self.write_to_textanalyzer()
+        self.show_sentiment_graph('TextAnalyzer.txt')
 
 def run_textentry():
     window = Tk(screenName="Screenplay Analyzer")

@@ -55,15 +55,15 @@ class GUI(object):
         self.bt1.config(font=("Courier", 30))
         self.bt1.grid(row=2, column=0)
 
-        self.bt2 = Button(self.frame, text='Pulp Fiction')
+        self.bt2 = Button(self.frame, text='Pulp Fiction', command=self.pulp)
         self.bt2.config(font=("Courier", 30))
         self.bt2.grid(row=2, column=1)
 
-        self.bt3 = Button(self.frame, text='La La Land')
+        self.bt3 = Button(self.frame, text='La La Land', command=self.lala)
         self.bt3.config(font=("Courier", 30))
         self.bt3.grid(row=2, column=2)
 
-        self.bt4 = Button(self.frame, text='Requiem For A Dream')
+        self.bt4 = Button(self.frame, text='Requiem For A Dream', command=self.requiem)
         self.bt4.config(font=("Courier", 30))
         self.bt4.grid(row=2, column=3)
 
@@ -71,23 +71,31 @@ class GUI(object):
         self.analyze_bt.config(font=("Courier", 30))
         self.analyze_bt.grid(row=3, columnspan=4, pady=100)
 
+    # Opens the text entry so that the user can enter its own screenplay
     def analyzer_opener(self):
         root2 = Toplevel(self.window)
         analyzer = te.TextEntry(root2)
 
-    def annieh(self):
-        # annieh = sp.Screenplay("Annie_Hall.txt")
-        # self.fig = annieh.plot_sentiment()
-        # self.canvas = FigureCanvasTkAgg(self.fig, master=self.frame)
-        # self.canvas.get_tk_widget().pack()
-        # self.canvas.draw()
-        annieh = sp.Screenplay("Annie_Hall.txt")
+    # Shows the sentiment graph
+    def show_sentiment_graph(self, title):
+        annieh = sp.Screenplay(title)
         self.fig = annieh.plot_sentiment()
         root3 = Toplevel(self.window)
         self.canvas = FigureCanvasTkAgg(self.fig, master=root3)
         self.canvas.get_tk_widget().pack()
         self.canvas.draw()
 
+    def annieh(self):
+        self.show_sentiment_graph('Annie_Hall.txt')
+
+    def pulp(self):
+        self.show_sentiment_graph('Pulp_Fiction_Clean.txt')
+
+    def lala(self):
+        self.show_sentiment_graph('La_La_Land_Clean.txt')
+
+    def requiem(self):
+        self.show_sentiment_graph("Requiem_For_A_Dream.txt")
 
 
 window = Tk(screenName="Screenplay Analyzer")

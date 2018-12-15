@@ -48,6 +48,7 @@ class Screenplay(object):
         scenes = self.text.split('INT' or 'EXT')
         return scenes
 
+    # Uses Text Blob to get the sentiment polarity of a scene
     def get_sentiment(self):
         sentiments = []
         scenes = self.divide_by_scenes()
@@ -58,6 +59,8 @@ class Screenplay(object):
             sentiments.append(emotion)
         return sentiments
 
+    # Created a graph showing the sentiment polarity of the scene, but plt is incompatible with the GUI so it is not
+    # used
     # def plot_sentiment(self):
     #     x = []
     #     for i in range(len(self.divide_by_scenes())):
@@ -90,6 +93,7 @@ class Screenplay(object):
 
         return fig
 
+    # Get x values for the sentiment analysis
     def get_x_sentiment(self):
         x = []
         for i in range(len(self.divide_by_scenes())):
