@@ -58,26 +58,7 @@ class Screenplay(object):
             sentiments.append(emotion)
         return sentiments
 
-    # Created a graph showing the sentiment polarity of the scene, but plt is incompatible with the GUI so it is not
-    # used
-    # def plot_sentiment(self):
-    #     x = []
-    #     for i in range(len(self.divide_by_scenes())):
-    #         x.append(i + 1)
-    #
-    #     y = self.get_sentiment()
-    #     fig, ax = plt.subplots()
-    #     plt.plot(x, y)
-    #     plt.title(self.get_title(), fontsize=32)
-    #     plt.ylim((-0.75, 0.75))
-    #     plt.ylabel("Sentiment Polarity")
-    #     plt.xlabel("Scenes")
-    #     # plt.text(.5, 1.03, "Average Sentiment - " + str(round(average(y), 4)), color="green")
-    #     ttl = ax.title
-    #     ttl.set_position([.5, 1.05])
-    #
-    #     plt.show()
-
+    # Create graph of sentiment by scene
     def plot_sentiment(self):
         x = self.get_x_sentiment()
         y = self.get_sentiment()
@@ -145,7 +126,8 @@ class Screenplay(object):
         print(self.text)
 
 
-# doesn't remove parenthesis that start in one line and finish in another
+# Remove parenthesis within the the screenplays
+# Doesn't remove parenthesis that start in one line and finish in another
 def remove_parenthesis(string):
     string = string.split('\n')
     for i in range(len(string)):
